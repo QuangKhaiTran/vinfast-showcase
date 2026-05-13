@@ -28,15 +28,17 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/xe-o-to">Xe ô tô điện</Link></li>
             <li><Link to="/xe-may-dien">Xe máy điện</Link></li>
-            <li><Link to="/dai-ly">Hệ thống đại lý</Link></li>
+            <li><Link to="/tram-sac">Trạm sạc V-Green</Link></li>
+            <li><Link to="/uu-dai">Ưu đãi</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-semibold mb-4 text-sm">Hỗ trợ</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
+            <li><Link to="/dich-vu">Dịch vụ sau bán hàng</Link></li>
+            <li><Link to="/dai-ly">Hệ thống đại lý</Link></li>
             <li><Link to="/lien-he">Liên hệ</Link></li>
             <li><Link to="/ve-chung-toi">Về VinFast</Link></li>
-            <li><Link to="/tin-tuc">Tin tức</Link></li>
           </ul>
         </div>
       </div>
