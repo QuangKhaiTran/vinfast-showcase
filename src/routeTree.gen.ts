@@ -10,11 +10,61 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as XeOToRouteImport } from './routes/xe-o-to'
+import { Route as XeMayDienRouteImport } from './routes/xe-may-dien'
+import { Route as VeChungToiRouteImport } from './routes/ve-chung-toi'
+import { Route as UuDaiRouteImport } from './routes/uu-dai'
+import { Route as TramSacRouteImport } from './routes/tram-sac'
+import { Route as TinTucRouteImport } from './routes/tin-tuc'
+import { Route as LienHeRouteImport } from './routes/lien-he'
+import { Route as DichVuRouteImport } from './routes/dich-vu'
+import { Route as DaiLyRouteImport } from './routes/dai-ly'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as XeOToModelRouteImport } from './routes/xe-o-to.$model'
+import { Route as TinTucSlugRouteImport } from './routes/tin-tuc.$slug'
 
 const XeOToRoute = XeOToRouteImport.update({
   id: '/xe-o-to',
   path: '/xe-o-to',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const XeMayDienRoute = XeMayDienRouteImport.update({
+  id: '/xe-may-dien',
+  path: '/xe-may-dien',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VeChungToiRoute = VeChungToiRouteImport.update({
+  id: '/ve-chung-toi',
+  path: '/ve-chung-toi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UuDaiRoute = UuDaiRouteImport.update({
+  id: '/uu-dai',
+  path: '/uu-dai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TramSacRoute = TramSacRouteImport.update({
+  id: '/tram-sac',
+  path: '/tram-sac',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TinTucRoute = TinTucRouteImport.update({
+  id: '/tin-tuc',
+  path: '/tin-tuc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LienHeRoute = LienHeRouteImport.update({
+  id: '/lien-he',
+  path: '/lien-he',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DichVuRoute = DichVuRouteImport.update({
+  id: '/dich-vu',
+  path: '/dich-vu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaiLyRoute = DaiLyRouteImport.update({
+  id: '/dai-ly',
+  path: '/dai-ly',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,31 +72,116 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const XeOToModelRoute = XeOToModelRouteImport.update({
+  id: '/$model',
+  path: '/$model',
+  getParentRoute: () => XeOToRoute,
+} as any)
+const TinTucSlugRoute = TinTucSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TinTucRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/xe-o-to': typeof XeOToRoute
+  '/dai-ly': typeof DaiLyRoute
+  '/dich-vu': typeof DichVuRoute
+  '/lien-he': typeof LienHeRoute
+  '/tin-tuc': typeof TinTucRouteWithChildren
+  '/tram-sac': typeof TramSacRoute
+  '/uu-dai': typeof UuDaiRoute
+  '/ve-chung-toi': typeof VeChungToiRoute
+  '/xe-may-dien': typeof XeMayDienRoute
+  '/xe-o-to': typeof XeOToRouteWithChildren
+  '/tin-tuc/$slug': typeof TinTucSlugRoute
+  '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/xe-o-to': typeof XeOToRoute
+  '/dai-ly': typeof DaiLyRoute
+  '/dich-vu': typeof DichVuRoute
+  '/lien-he': typeof LienHeRoute
+  '/tin-tuc': typeof TinTucRouteWithChildren
+  '/tram-sac': typeof TramSacRoute
+  '/uu-dai': typeof UuDaiRoute
+  '/ve-chung-toi': typeof VeChungToiRoute
+  '/xe-may-dien': typeof XeMayDienRoute
+  '/xe-o-to': typeof XeOToRouteWithChildren
+  '/tin-tuc/$slug': typeof TinTucSlugRoute
+  '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/xe-o-to': typeof XeOToRoute
+  '/dai-ly': typeof DaiLyRoute
+  '/dich-vu': typeof DichVuRoute
+  '/lien-he': typeof LienHeRoute
+  '/tin-tuc': typeof TinTucRouteWithChildren
+  '/tram-sac': typeof TramSacRoute
+  '/uu-dai': typeof UuDaiRoute
+  '/ve-chung-toi': typeof VeChungToiRoute
+  '/xe-may-dien': typeof XeMayDienRoute
+  '/xe-o-to': typeof XeOToRouteWithChildren
+  '/tin-tuc/$slug': typeof TinTucSlugRoute
+  '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/xe-o-to'
+  fullPaths:
+    | '/'
+    | '/dai-ly'
+    | '/dich-vu'
+    | '/lien-he'
+    | '/tin-tuc'
+    | '/tram-sac'
+    | '/uu-dai'
+    | '/ve-chung-toi'
+    | '/xe-may-dien'
+    | '/xe-o-to'
+    | '/tin-tuc/$slug'
+    | '/xe-o-to/$model'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/xe-o-to'
-  id: '__root__' | '/' | '/xe-o-to'
+  to:
+    | '/'
+    | '/dai-ly'
+    | '/dich-vu'
+    | '/lien-he'
+    | '/tin-tuc'
+    | '/tram-sac'
+    | '/uu-dai'
+    | '/ve-chung-toi'
+    | '/xe-may-dien'
+    | '/xe-o-to'
+    | '/tin-tuc/$slug'
+    | '/xe-o-to/$model'
+  id:
+    | '__root__'
+    | '/'
+    | '/dai-ly'
+    | '/dich-vu'
+    | '/lien-he'
+    | '/tin-tuc'
+    | '/tram-sac'
+    | '/uu-dai'
+    | '/ve-chung-toi'
+    | '/xe-may-dien'
+    | '/xe-o-to'
+    | '/tin-tuc/$slug'
+    | '/xe-o-to/$model'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  XeOToRoute: typeof XeOToRoute
+  DaiLyRoute: typeof DaiLyRoute
+  DichVuRoute: typeof DichVuRoute
+  LienHeRoute: typeof LienHeRoute
+  TinTucRoute: typeof TinTucRouteWithChildren
+  TramSacRoute: typeof TramSacRoute
+  UuDaiRoute: typeof UuDaiRoute
+  VeChungToiRoute: typeof VeChungToiRoute
+  XeMayDienRoute: typeof XeMayDienRoute
+  XeOToRoute: typeof XeOToRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +193,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof XeOToRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/xe-may-dien': {
+      id: '/xe-may-dien'
+      path: '/xe-may-dien'
+      fullPath: '/xe-may-dien'
+      preLoaderRoute: typeof XeMayDienRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ve-chung-toi': {
+      id: '/ve-chung-toi'
+      path: '/ve-chung-toi'
+      fullPath: '/ve-chung-toi'
+      preLoaderRoute: typeof VeChungToiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uu-dai': {
+      id: '/uu-dai'
+      path: '/uu-dai'
+      fullPath: '/uu-dai'
+      preLoaderRoute: typeof UuDaiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tram-sac': {
+      id: '/tram-sac'
+      path: '/tram-sac'
+      fullPath: '/tram-sac'
+      preLoaderRoute: typeof TramSacRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tin-tuc': {
+      id: '/tin-tuc'
+      path: '/tin-tuc'
+      fullPath: '/tin-tuc'
+      preLoaderRoute: typeof TinTucRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lien-he': {
+      id: '/lien-he'
+      path: '/lien-he'
+      fullPath: '/lien-he'
+      preLoaderRoute: typeof LienHeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dich-vu': {
+      id: '/dich-vu'
+      path: '/dich-vu'
+      fullPath: '/dich-vu'
+      preLoaderRoute: typeof DichVuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dai-ly': {
+      id: '/dai-ly'
+      path: '/dai-ly'
+      fullPath: '/dai-ly'
+      preLoaderRoute: typeof DaiLyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -65,13 +256,66 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/xe-o-to/$model': {
+      id: '/xe-o-to/$model'
+      path: '/$model'
+      fullPath: '/xe-o-to/$model'
+      preLoaderRoute: typeof XeOToModelRouteImport
+      parentRoute: typeof XeOToRoute
+    }
+    '/tin-tuc/$slug': {
+      id: '/tin-tuc/$slug'
+      path: '/$slug'
+      fullPath: '/tin-tuc/$slug'
+      preLoaderRoute: typeof TinTucSlugRouteImport
+      parentRoute: typeof TinTucRoute
+    }
   }
 }
 
+interface TinTucRouteChildren {
+  TinTucSlugRoute: typeof TinTucSlugRoute
+}
+
+const TinTucRouteChildren: TinTucRouteChildren = {
+  TinTucSlugRoute: TinTucSlugRoute,
+}
+
+const TinTucRouteWithChildren =
+  TinTucRoute._addFileChildren(TinTucRouteChildren)
+
+interface XeOToRouteChildren {
+  XeOToModelRoute: typeof XeOToModelRoute
+}
+
+const XeOToRouteChildren: XeOToRouteChildren = {
+  XeOToModelRoute: XeOToModelRoute,
+}
+
+const XeOToRouteWithChildren = XeOToRoute._addFileChildren(XeOToRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  XeOToRoute: XeOToRoute,
+  DaiLyRoute: DaiLyRoute,
+  DichVuRoute: DichVuRoute,
+  LienHeRoute: LienHeRoute,
+  TinTucRoute: TinTucRouteWithChildren,
+  TramSacRoute: TramSacRoute,
+  UuDaiRoute: UuDaiRoute,
+  VeChungToiRoute: VeChungToiRoute,
+  XeMayDienRoute: XeMayDienRoute,
+  XeOToRoute: XeOToRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
