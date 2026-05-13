@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as XeOToRouteImport } from './routes/xe-o-to'
+import { Route as XeMayDienRouteImport } from './routes/xe-may-dien'
+import { Route as VeChungToiRouteImport } from './routes/ve-chung-toi'
 import { Route as LienHeRouteImport } from './routes/lien-he'
+import { Route as DaiLyRouteImport } from './routes/dai-ly'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as XeOToModelRouteImport } from './routes/xe-o-to.$model'
 
@@ -19,9 +22,24 @@ const XeOToRoute = XeOToRouteImport.update({
   path: '/xe-o-to',
   getParentRoute: () => rootRouteImport,
 } as any)
+const XeMayDienRoute = XeMayDienRouteImport.update({
+  id: '/xe-may-dien',
+  path: '/xe-may-dien',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VeChungToiRoute = VeChungToiRouteImport.update({
+  id: '/ve-chung-toi',
+  path: '/ve-chung-toi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LienHeRoute = LienHeRouteImport.update({
   id: '/lien-he',
   path: '/lien-he',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DaiLyRoute = DaiLyRouteImport.update({
+  id: '/dai-ly',
+  path: '/dai-ly',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,34 +55,68 @@ const XeOToModelRoute = XeOToModelRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dai-ly': typeof DaiLyRoute
   '/lien-he': typeof LienHeRoute
+  '/ve-chung-toi': typeof VeChungToiRoute
+  '/xe-may-dien': typeof XeMayDienRoute
   '/xe-o-to': typeof XeOToRouteWithChildren
   '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dai-ly': typeof DaiLyRoute
   '/lien-he': typeof LienHeRoute
+  '/ve-chung-toi': typeof VeChungToiRoute
+  '/xe-may-dien': typeof XeMayDienRoute
   '/xe-o-to': typeof XeOToRouteWithChildren
   '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dai-ly': typeof DaiLyRoute
   '/lien-he': typeof LienHeRoute
+  '/ve-chung-toi': typeof VeChungToiRoute
+  '/xe-may-dien': typeof XeMayDienRoute
   '/xe-o-to': typeof XeOToRouteWithChildren
   '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lien-he' | '/xe-o-to' | '/xe-o-to/$model'
+  fullPaths:
+    | '/'
+    | '/dai-ly'
+    | '/lien-he'
+    | '/ve-chung-toi'
+    | '/xe-may-dien'
+    | '/xe-o-to'
+    | '/xe-o-to/$model'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lien-he' | '/xe-o-to' | '/xe-o-to/$model'
-  id: '__root__' | '/' | '/lien-he' | '/xe-o-to' | '/xe-o-to/$model'
+  to:
+    | '/'
+    | '/dai-ly'
+    | '/lien-he'
+    | '/ve-chung-toi'
+    | '/xe-may-dien'
+    | '/xe-o-to'
+    | '/xe-o-to/$model'
+  id:
+    | '__root__'
+    | '/'
+    | '/dai-ly'
+    | '/lien-he'
+    | '/ve-chung-toi'
+    | '/xe-may-dien'
+    | '/xe-o-to'
+    | '/xe-o-to/$model'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DaiLyRoute: typeof DaiLyRoute
   LienHeRoute: typeof LienHeRoute
+  VeChungToiRoute: typeof VeChungToiRoute
+  XeMayDienRoute: typeof XeMayDienRoute
   XeOToRoute: typeof XeOToRouteWithChildren
 }
 
@@ -77,11 +129,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof XeOToRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/xe-may-dien': {
+      id: '/xe-may-dien'
+      path: '/xe-may-dien'
+      fullPath: '/xe-may-dien'
+      preLoaderRoute: typeof XeMayDienRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ve-chung-toi': {
+      id: '/ve-chung-toi'
+      path: '/ve-chung-toi'
+      fullPath: '/ve-chung-toi'
+      preLoaderRoute: typeof VeChungToiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lien-he': {
       id: '/lien-he'
       path: '/lien-he'
       fullPath: '/lien-he'
       preLoaderRoute: typeof LienHeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dai-ly': {
+      id: '/dai-ly'
+      path: '/dai-ly'
+      fullPath: '/dai-ly'
+      preLoaderRoute: typeof DaiLyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -113,7 +186,10 @@ const XeOToRouteWithChildren = XeOToRoute._addFileChildren(XeOToRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DaiLyRoute: DaiLyRoute,
   LienHeRoute: LienHeRoute,
+  VeChungToiRoute: VeChungToiRoute,
+  XeMayDienRoute: XeMayDienRoute,
   XeOToRoute: XeOToRouteWithChildren,
 }
 export const routeTree = rootRouteImport
