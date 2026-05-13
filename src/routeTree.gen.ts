@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as XeOToRouteImport } from './routes/xe-o-to'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as XeOToModelRouteImport } from './routes/xe-o-to.$model'
 
 const XeOToRoute = XeOToRouteImport.update({
   id: '/xe-o-to',
@@ -22,31 +23,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const XeOToModelRoute = XeOToModelRouteImport.update({
+  id: '/$model',
+  path: '/$model',
+  getParentRoute: () => XeOToRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/xe-o-to': typeof XeOToRoute
+  '/xe-o-to': typeof XeOToRouteWithChildren
+  '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/xe-o-to': typeof XeOToRoute
+  '/xe-o-to': typeof XeOToRouteWithChildren
+  '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/xe-o-to': typeof XeOToRoute
+  '/xe-o-to': typeof XeOToRouteWithChildren
+  '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/xe-o-to'
+  fullPaths: '/' | '/xe-o-to' | '/xe-o-to/$model'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/xe-o-to'
-  id: '__root__' | '/' | '/xe-o-to'
+  to: '/' | '/xe-o-to' | '/xe-o-to/$model'
+  id: '__root__' | '/' | '/xe-o-to' | '/xe-o-to/$model'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  XeOToRoute: typeof XeOToRoute
+  XeOToRoute: typeof XeOToRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -65,13 +74,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/xe-o-to/$model': {
+      id: '/xe-o-to/$model'
+      path: '/$model'
+      fullPath: '/xe-o-to/$model'
+      preLoaderRoute: typeof XeOToModelRouteImport
+      parentRoute: typeof XeOToRoute
+    }
   }
 }
 
+interface XeOToRouteChildren {
+  XeOToModelRoute: typeof XeOToModelRoute
+}
+
+const XeOToRouteChildren: XeOToRouteChildren = {
+  XeOToModelRoute: XeOToModelRoute,
+}
+
+const XeOToRouteWithChildren = XeOToRoute._addFileChildren(XeOToRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  XeOToRoute: XeOToRoute,
+  XeOToRoute: XeOToRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
