@@ -6,9 +6,12 @@ const links = [
   { to: "/", label: "Trang chủ" },
   { to: "/xe-o-to", label: "Xe ô tô" },
   { to: "/xe-may-dien", label: "Xe máy điện" },
+  { to: "/tram-sac", label: "Trạm sạc" },
+  { to: "/uu-dai", label: "Ưu đãi" },
+  { to: "/dich-vu", label: "Dịch vụ" },
   { to: "/tin-tuc", label: "Tin tức" },
   { to: "/dai-ly", label: "Đại lý" },
-  { to: "/ve-chung-toi", label: "Về chúng tôi" },
+  { to: "/ve-chung-toi", label: "Về VinFast" },
   { to: "/lien-he", label: "Liên hệ" },
 ] as const;
 
