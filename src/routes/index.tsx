@@ -3,7 +3,7 @@ import { Layout } from "@/components/site/Layout";
 import { Car3D } from "@/components/site/Car3D";
 import { cars } from "@/data/cars";
 import { ArrowRight, Battery, Zap, Shield, Gauge } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/vf9.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,11 +23,11 @@ function Home() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative min-h-[92vh] overflow-hidden bg-gradient-hero">
-        <div className="absolute inset-0 opacity-30">
-          <Car3D />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-6 pt-24 pb-32 grid lg:grid-cols-2 gap-12 items-center">
+      <section 
+        className="relative min-h-[92vh] overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: `linear-gradient(rgba(10,15,30,0.7), rgba(10,15,30,0.8)), url(${heroBg})` }}
+      >
+        <div className="relative max-w-7xl mx-auto px-6 pt-24 pb-32 grid lg:grid-cols-2 gap-12 items-center min-h-[92vh]">
           <div className="z-10 animate-fade-up">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold tracking-widest uppercase">
               Tương lai di chuyển
@@ -67,9 +67,6 @@ function Home() {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="relative h-[500px] hidden lg:block">
-            <Car3D />
           </div>
         </div>
       </section>
