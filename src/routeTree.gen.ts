@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as XeOToRouteImport } from './routes/xe-o-to'
+import { Route as LienHeRouteImport } from './routes/lien-he'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as XeOToModelRouteImport } from './routes/xe-o-to.$model'
 
 const XeOToRoute = XeOToRouteImport.update({
   id: '/xe-o-to',
   path: '/xe-o-to',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LienHeRoute = LienHeRouteImport.update({
+  id: '/lien-he',
+  path: '/lien-he',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +37,34 @@ const XeOToModelRoute = XeOToModelRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/lien-he': typeof LienHeRoute
   '/xe-o-to': typeof XeOToRouteWithChildren
   '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/lien-he': typeof LienHeRoute
   '/xe-o-to': typeof XeOToRouteWithChildren
   '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/lien-he': typeof LienHeRoute
   '/xe-o-to': typeof XeOToRouteWithChildren
   '/xe-o-to/$model': typeof XeOToModelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/xe-o-to' | '/xe-o-to/$model'
+  fullPaths: '/' | '/lien-he' | '/xe-o-to' | '/xe-o-to/$model'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/xe-o-to' | '/xe-o-to/$model'
-  id: '__root__' | '/' | '/xe-o-to' | '/xe-o-to/$model'
+  to: '/' | '/lien-he' | '/xe-o-to' | '/xe-o-to/$model'
+  id: '__root__' | '/' | '/lien-he' | '/xe-o-to' | '/xe-o-to/$model'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LienHeRoute: typeof LienHeRoute
   XeOToRoute: typeof XeOToRouteWithChildren
 }
 
@@ -65,6 +75,13 @@ declare module '@tanstack/react-router' {
       path: '/xe-o-to'
       fullPath: '/xe-o-to'
       preLoaderRoute: typeof XeOToRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lien-he': {
+      id: '/lien-he'
+      path: '/lien-he'
+      fullPath: '/lien-he'
+      preLoaderRoute: typeof LienHeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -96,6 +113,7 @@ const XeOToRouteWithChildren = XeOToRoute._addFileChildren(XeOToRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LienHeRoute: LienHeRoute,
   XeOToRoute: XeOToRouteWithChildren,
 }
 export const routeTree = rootRouteImport
